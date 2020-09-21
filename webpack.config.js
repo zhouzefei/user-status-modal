@@ -1,4 +1,4 @@
-const webpack = require("webpack"); 
+const webpack = require("webpack");
 let webpackConfig = {
 	entry: "./test/index.js",
 	output:{
@@ -33,14 +33,6 @@ let webpackConfig = {
 								"@babel/plugin-proposal-class-properties",
 								{ loose: true }
 							],
-							[
-								"import",
-								{
-									libraryName: "antd",
-									libraryDirectory: "lib",
-									style: true
-								}
-							],
 							"@babel/plugin-transform-runtime",
 						]
 					}
@@ -62,19 +54,19 @@ let webpackConfig = {
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				use: [
-					{ 
+					{
 						loader: 'url-loader'
 					}
 				]
 			}
 		]
 	},
-	 
+
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			React: "react"
 		}),
 	]
-}; 
+};
 module.exports = webpackConfig;

@@ -14,7 +14,7 @@ let webpackConfig = {
 		reactDom: "react-dom"
 	},
 	optimization: {
-		minimize: true
+		minimize: false
 	},
 	plugins:[
 		new BundleAnalyzerPlugin()
@@ -54,7 +54,7 @@ let webpackConfig = {
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 				use: [
-					{ 
+					{
 						loader: 'url-loader',
 						options:{
 							limit: 10000,

@@ -6,7 +6,16 @@ export default class MultiUser extends PureComponent{
     constructor(props){
         super(props);
         this.state = {
-            visible: props.hasOwnProperty("showModal") ? showModal : true
+            visible: props.hasOwnProperty("showModal") ? props.showModal : true
+        }
+    }
+    componentWillReceiveProps(next){
+        if(this.props.hasOwnProperty("showModal")){
+            if(next.showModal){
+                this.setState({
+                    visible: next.showModal
+                })
+            }
         }
     }
     goToLogin = () => { 
