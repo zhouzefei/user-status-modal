@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var userStatusModal = function userStatusModal(field, lang) {
   lang = lang === "en" ? "en" : "cn";
@@ -31,4 +31,4 @@ var userStatusModal = function userStatusModal(field, lang) {
 var _default = {
   userStatusModal: userStatusModal
 };
-exports["default"] = _default;
+exports.default = _default;

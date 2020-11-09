@@ -1,46 +1,41 @@
-import { PureComponent } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Modal, Button } from "antd";
 import userStatusLang from "../sources/lang";
 
-export default class NoOperate extends PureComponent{
-    constructor(props){
-        super(props);
-        this.state = {
-            visible: false, // 弹窗
-            noOperateTime: props.noOperateTime || 1800000 // 默认30分钟
+export default (props) => {
+    const { modalCloseEvent = void 0, modalShowEvent = void 0, dispatch, lang="cn" } = props;
+    const [ visible, setVisible ] = useState(false); // 弹窗
+    const [ noOperateTime, setNoOperateTime ] = useState(props.noOperateTime || 1800000); // 默认30分钟
+
+    const timer = useRef();
+
+    useEffect(()=> {
+    	listener(); // 初始化设定
+    	document.body.addEventListener("click", listener);
+    	document.body.addEventListener("keydown", listener);
+    	document.body.addEventListener("mousemove", listener);
+        document.body.addEventListener("mousewheel", listener);
+        return ()=>{
+            removeListener();
         }
+    },[]);
+
+    const removeListener = () => {
+    	document.body.removeEventListener("click", listener);
+    	document.body.removeEventListener("keydown", listener);
+    	document.body.removeEventListener("mousemove", listener);
+    	document.body.removeEventListener("mousewheel", listener);
+        clearInterval(timer.current);
+        timer.current = null;
     }
 
-    componentDidMount() {
-    	this.listener(); // 初始化设定
-    	document.body.addEventListener("click", this.listener);
-    	document.body.addEventListener("keydown", this.listener);
-    	document.body.addEventListener("mousemove", this.listener);
-    	document.body.addEventListener("mousewheel", this.listener);
-    }
-   
-    componentWillUnmount() {
-    	this.removeListener();
-    }
-
-    removeListener = () => {
-    	document.body.removeEventListener("click", this.listener);
-    	document.body.removeEventListener("keydown", this.listener);
-    	document.body.removeEventListener("mousemove", this.listener);
-    	document.body.removeEventListener("mousewheel", this.listener);
-        clearInterval(this.timer);
-        this.timer = null;
-    }
-
-    listener = () => {
-    	this.timer && clearInterval(this.timer);
+    const listener = () => {
+    	timer.current && clearInterval(timer.current);
         localStorage.curTime = new Date().valueOf();
-        const { modalShowEvent = void 0, dispatch } = this.props;
     	// 设置定时器
-    	this.timer = setInterval(() => {
+    	timer.current = setInterval(() => {
     		const nowTime = new Date().valueOf();
             const durTime = nowTime - parseInt(localStorage.curTime, 10);
-            const { noOperateTime } = this.state;
     		if (durTime >= noOperateTime) {
                 if(modalShowEvent && typeof modalShowEvent === "function"){
                     modalShowEvent();
@@ -49,19 +44,14 @@ export default class NoOperate extends PureComponent{
                         type: "login/signOut"
                     });
                 }
-    			this.removeListener();
-    			this.setState({
-                    visible: true
-                })
+    			removeListener();
+    			setVisible(true);
     		}
     	}, 1000);
     }
 
-    goToLogin = () => {
-        const { modalCloseEvent = void 0, dispatch } = this.props;
-        this.setState({
-            visible: false
-        })
+    const goToLogin = () => {
+        setNoOperateTime(false);
         if(modalCloseEvent && typeof modalCloseEvent === "function"){
             modalCloseEvent();
         }else if(dispatch){
@@ -73,38 +63,32 @@ export default class NoOperate extends PureComponent{
         }
     }
 
-    render(){
-        const { lang="cn" } = this.props || {};
-        const { visible } = this.state;
-        return (
-            <div className="user-operate">
-                <Modal
-                    className="user-operate-modal"
-                    visible={visible}
-                    closable={false}
-                    footer={null}
-                    width={450}
+    return (
+        <Modal
+            className="user-operate-modal"
+            visible={visible}
+            closable={false}
+            footer={null}
+            width={450}
+        >
+            <div className="u-pic"></div>
+            <p>
+                {/* 您长时间未执行操作，系统已自动退出 */}
+                {userStatusLang.userStatusModal("noOperateContent",lang)}
+            </p>
+            <p>
+                {/* 点击确定重新登陆 */}
+                {userStatusLang.userStatusModal("warnMsg",lang)}
+            </p>
+            <div className="btn">
+                <Button
+                    type="primary"
+                    onClick={goToLogin}
                 >
-                    <div className="u-pic"></div>
-                    <p>
-                        {/* 您长时间未执行操作，系统已自动退出 */}
-                        {userStatusLang.userStatusModal("noOperateContent",lang)}
-                    </p>
-                    <p>
-                        {/* 点击确定重新登陆 */}
-                        {userStatusLang.userStatusModal("warnMsg",lang)}
-                    </p>
-                    <div className="btn">
-                        <Button 
-                            type="primary" 
-                            onClick={this.goToLogin}
-                        >
-                            {/* 确定 */}
-                            {userStatusLang.userStatusModal("submit",lang)}
-                        </Button>
-                    </div>
-                </Modal>
+                    {/* 确定 */}
+                    {userStatusLang.userStatusModal("submit",lang)}
+                </Button>
             </div>
-        );
-    }
+        </Modal>
+    );
 }

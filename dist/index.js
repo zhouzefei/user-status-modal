@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "NoOperate", {
   enumerable: true,
   get: function get() {
-    return _NoOperate["default"];
+    return _NoOperate.default;
   }
 });
 Object.defineProperty(exports, "MultiUser", {
   enumerable: true,
   get: function get() {
-    return _MultiUser["default"];
+    return _MultiUser.default;
   }
 });
 
@@ -22,4 +22,4 @@ var _MultiUser = _interopRequireDefault(require("./components/MultiUser"));
 
 require("./index.less");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

@@ -4,4 +4,4 @@ import "./index.less";
 export {
     NoOperate,
     MultiUser
-}
+} ;
