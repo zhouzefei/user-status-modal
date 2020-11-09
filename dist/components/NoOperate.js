@@ -98,7 +98,7 @@ var _default = function _default(props) {
   };
 
   var goToLogin = function goToLogin() {
-    setNoOperateTime(false);
+    setVisible(false);
 
     if (modalCloseEvent && typeof modalCloseEvent === "function") {
       modalCloseEvent();

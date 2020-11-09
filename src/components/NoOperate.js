@@ -51,7 +51,7 @@ export default (props) => {
     }
 
     const goToLogin = () => {
-        setNoOperateTime(false);
+        setVisible(false);
         if(modalCloseEvent && typeof modalCloseEvent === "function"){
             modalCloseEvent();
         }else if(dispatch){

@@ -10,24 +10,36 @@
 |  参数   | 作用  |
 |  ----  |  ----  |
 |  lang  | 国际化`cn|en` |
-|  modalType | 弹窗类型`noOperate|multiUser` |
 |  modalShowEvent  | 显示弹窗时回调。结合当前业务：如果未传此回调方法但传dispatch函数，默认执行 `dispatch({ type: "login/signOut" });` |
 |  modalCloseEvent  | 关闭弹窗回调。结合当前业务：如果未传此回调方法但传dispatch函数，默认执行 `dispatch({ type: "login/goLogin" });`  |
 |  noOperateTime  | 停留页面时间设置,`noOperate`场景中可按照实际情况设置，默认30分钟 |
 |  showModal  | `multiUser`多终端登录时可以根据用户传递控制是否显示弹窗，默认弹窗 |
-| dispatch | 用于执行业务中的action |
 
 
 ```javascript
-<UserStatusModal
+// 长时间未操作
+ <NoOperate
     lang="cn"
-    modalType="multiUser"
-    // showModal={true}
-    // noOperateTime="1000" // 静置时间
+    noOperateTime="100" // 静置时间
     modalShowEvent={()=>{ // 弹窗回调
         console.log(1)
     }}
     modalCloseEvent={()=>{ // 点击弹窗确定回调
+        console.log(2)
+    }}
+/>
+
+
+// 多用户登录
+<MultiUser
+    lang="cn"
+    showModal={multiUserModal}
+    modalShowEvent={() => {
+        // 弹窗回调
+        console.log(1)
+    }}
+    modalCloseEvent={() => {
+        // 点击弹窗确定回调
         console.log(2)
     }}
 />

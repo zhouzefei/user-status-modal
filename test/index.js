@@ -4,8 +4,8 @@ const UserStatusModalExample = () => {
     return (
         <NoOperate
             lang="cn"
-            // showModal={true}
-            // noOperateTime="100" // 静置时间
+            showModal={true}
+            noOperateTime="100" // 静置时间
             modalShowEvent={()=>{ // 弹窗回调
                 console.log(1)
             }}
