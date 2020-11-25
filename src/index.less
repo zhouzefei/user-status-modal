@@ -16,16 +16,23 @@
             width: 100%;
             margin-bottom: 30px;
             min-height: 222px;
-            background: url("./sources/images/user-status-modal-bg.png");
-            background-size: 100% 100%;
             position: relative;
+            &.u-no-operate{
+                background: url("./sources/images/noOperate.jpg");
+                background-size:  100% 100%;
+            }
+            &.u-multiple{
+                background: url("./sources/images/multiple.jpg");
+                background-size:  100% 100%;
+            }
         }
 
         p {
             text-align: center;
-            color: #888;
+            color: rgba(23,35,61,0.8);
             line-height: 26px;
             padding:0 20px;
+            margin-bottom:6px;
         }
 
         .btn {

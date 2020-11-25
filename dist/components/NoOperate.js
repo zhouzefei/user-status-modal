@@ -118,7 +118,7 @@ var _default = function _default(props) {
     footer: null,
     width: 450
   }, /*#__PURE__*/React.createElement("div", {
-    className: "u-pic"
+    className: "u-pic u-no-operate"
   }), /*#__PURE__*/React.createElement("p", null, _lang.default.userStatusModal("noOperateContent", lang)), /*#__PURE__*/React.createElement("p", null, _lang.default.userStatusModal("warnMsg", lang)), /*#__PURE__*/React.createElement("div", {
     className: "btn"
   }, /*#__PURE__*/React.createElement(_button.default, {

@@ -35,7 +35,7 @@ export default (props)=>{
             footer={null}
             width={450}
         >
-            <div className="u-pic"></div>
+            <div className="u-pic u-multiple"></div>
             <p>
                 {/* 当前帐号在其他设备上登录 */}
                 {userStatusLang.userStatusModal("otherLoginContent",lang)}

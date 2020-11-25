@@ -71,7 +71,7 @@ export default (props) => {
             footer={null}
             width={450}
         >
-            <div className="u-pic"></div>
+            <div className="u-pic u-no-operate"></div>
             <p>
                 {/* 您长时间未执行操作，系统已自动退出 */}
                 {userStatusLang.userStatusModal("noOperateContent",lang)}

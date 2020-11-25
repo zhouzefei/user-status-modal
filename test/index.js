@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import { NoOperate, MultiUser } from "../src/index"; //"user-status-modal";
 const UserStatusModalExample = () => {
     return (
-        <NoOperate
+        <MultiUser
             lang="cn"
             showModal={true}
             noOperateTime="100" // 静置时间

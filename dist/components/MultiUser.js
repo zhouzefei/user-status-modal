@@ -73,7 +73,7 @@ var _default = function _default(props) {
     footer: null,
     width: 450
   }, /*#__PURE__*/React.createElement("div", {
-    className: "u-pic"
+    className: "u-pic u-multiple"
   }), /*#__PURE__*/React.createElement("p", null, _lang.default.userStatusModal("otherLoginContent", lang)), /*#__PURE__*/React.createElement("p", null, _lang.default.userStatusModal("warnMsg", lang)), /*#__PURE__*/React.createElement("div", {
     className: "btn"
   }, /*#__PURE__*/React.createElement(_button.default, {
