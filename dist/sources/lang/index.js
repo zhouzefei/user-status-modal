@@ -17,7 +17,7 @@ var userStatusModal = function userStatusModal(field, lang) {
       "en": "Current account is logged in on other devices"
     },
     "warnMsg": {
-      "cn": "点击确定重新登陆",
+      "cn": "点击确定重新登录",
       "en": "Click OK to log in again"
     },
     "submit": {
